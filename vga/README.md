@@ -13,11 +13,14 @@ expected inputs. The correct `h_sync` and `v_sync` signals for the VGA protocol
 will automatically be generated from the timing parameters passed.
 
 For practical incorporation in a design, the following signals are exported:
+
     * `disp_ena` - There are periods of display time and blanking time during 
         VGA operation. When `disp_ena = 1`, color values may be sent to the 
         screen.  When `disp_ena = 0`, black should be sent as the color value.
+
     * `row` - The row value of the pixel being drawn. Only valid when 
         `disp_ena = 1`.
+
     * `col` - The column value of the pixel being drawn. Only valid when
         `disp_ena = 1`.
 
