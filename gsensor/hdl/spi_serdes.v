@@ -24,7 +24,7 @@ localparam WRITE = 1; // Write out data.
 localparam  READ = 2; // Read data.
 localparam STALL = 3; // Stall for 1 cycle while asserting "done"
 
-reg [1:0]  state;
+reg [1:0]  state = IDLE;
 reg [3:0]  count;
 reg [15:0] data_tx_reg;
 reg read;

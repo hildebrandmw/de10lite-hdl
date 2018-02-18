@@ -1,6 +1,6 @@
 module spi_control#(
         // Module clock frequency
-        parameter CLK_FREQ      = 2_000_000,
+        parameter SPI_CLK_FREQ  = 2_000_000,
         // Desired update interval
         parameter UPDATE_FREQ   = 50
     )(
@@ -20,7 +20,7 @@ module spi_control#(
         input                   SPI_SDO,
         output                  SPI_CSN,
         output                  SPI_CLK,
-        input [1:0]             interrupt // SPI interrupts
+        input [1:0]             interrupt // SPI interrupts - currently disconnected
     );
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -28,7 +28,7 @@ module spi_control#(
 ////////////////////////////////////////////////////////////////////////////////
 
 // Control for update timings.
-localparam TIMECOUNT = CLK_FREQ / UPDATE_FREQ;
+localparam TIMECOUNT = SPI_CLK_FREQ / UPDATE_FREQ;
 
 // Width of data packet to transmit.
 localparam SDI_WIDTH = 16;
