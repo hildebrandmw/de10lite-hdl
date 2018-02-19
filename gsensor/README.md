@@ -17,7 +17,7 @@ descriptions of the modules and their respective test benches are given below.
 
 # spi\_control.v
 
-Module for periodically sampling the x- and y-axsi of the G-Sensor and 
+Module for periodically sampling the x- and y-axis of the G-Sensor and 
 broadcasting the results on the `data_x` and `data_y` output ports respectively.
 When new data is available, the output signal `data_update` will be high (1)
 for one clock cycle of `clk`. Though these outputs are held for some time after
@@ -82,6 +82,30 @@ and phase relationships. All clocks can be generated from a single PLL.
 
 # Testing
 
-Will write up more soon. Makefile can be used as a reference for how to build
+Makefile can be used as a reference for how to build
 simulation environment. **Note that Makefile assumes that iverilog is 
 installed.** 
+
+# spi\_secondary\_mimic.v
+
+This is a simple reactive model of the G-Sensor SPI secondary. During a primary 
+write command, the mimic will read a full 16 bits of data and display read
+results if parameter `VERBOSE = 1`. During a primary read operation, secondary
+will read 8 bits and then write back 8 bits. Write back data taken one line at
+a time from the `secondary_data.txt` file. Every primary read operation will
+increment the secondary's read position in this file by one line.
+
+# spi\_serdes\_tb.v
+
+Testbench for `spi_serdes.v`. Generates a series of read and write requests
+taken from `primary_data.txt`. One a read request, will check its decoded data
+with the expected data from `secondary_data.txt`. If there is a mismatch, an
+error message will be displayed.
+
+# spi\_control\_tb.v
+
+Testbench for `spi_control.v`. Supplies appropriate clocks to `spi_control` and
+waits for `data_update` output to be asserted. At this point, the `data_x` and
+`data_y` signals are checked and compared with the expected results from
+`secondary_data.txt`. If there is a mismatch, an error message will be 
+displayed.

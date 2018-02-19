@@ -68,7 +68,7 @@ module spi_secondary_mimic #(
                     end else begin
                         repeat (8) begin
                             @(posedge SPI_CLK);
-                            data_rx = {data_rx[7:1], SPI_SDI};
+                            data_rx = {data_rx[6:0], SPI_SDI};
                         end
                         if (VERBOSE == 1) begin
                             $display("SPI secondary data_rx: %b", data_rx);
