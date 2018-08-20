@@ -10,6 +10,7 @@ Note, there's some schenanigans that must be performed in the `.sdc` file to
 get the IO signal timings correct. I will eventually include those details
 as well.
 
+Parameter                       | Setting
 --------------------------------|--------
 Clock frequency                 | 100 MHz
 --------------------------------|--------
@@ -30,4 +31,3 @@ t\_rcd                          | 15 ns
 t\_ac                           | 6 ns
 --------------------------------|--------
 t\_wr                           | 14 ns
---------------------------------|--------
