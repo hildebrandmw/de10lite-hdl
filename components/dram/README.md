@@ -10,24 +10,24 @@ Note, there's some schenanigans that must be performed in the `.sdc` file to
 get the IO signal timings correct. I will eventually include those details
 as well.
 
-Parameter                       | Setting
---------------------------------|--------
-Clock frequency                 | 100 MHz
-                                |        
-CAS Latency                     | 2
-                                |        
-Initialization refresh cycles   | 8
-                                |        
-Issue one refresh every         | 7.8125 ns
-                                |        
-Delay after powerup             | 100 us
-                                |        
-t\_rfc                          | 55 ns
-                                |        
-t\_rp                           | 15 ns
-                                |        
-t\_rcd                          | 15 ns
-                                |        
-t\_ac                           | 6 ns
-                                |        
-t\_wr                           | 14 ns
+| Parameter                       | Setting   |
+|---------------------------------|-----------|
+| Clock frequency                 | 100 MHz   |
+|                                 |           |
+| CAS Latency                     | 2         |
+|                                 |           |
+| Initialization refresh cycles   | 8         |
+|                                 |           |
+| Issue one refresh every         | 7.8125 ns |
+|                                 |           |
+| Delay after powerup             | 100 us    |
+|                                 |           |
+| t\_rfc                          | 55 ns     |
+|                                 |           |
+| t\_rp                           | 15 ns     |
+|                                 |           |
+| t\_rcd                          | 15 ns     |
+|                                 |           |
+| t\_ac                           | 6 ns      |
+|                                 |           |
+| t\_wr                           | 14 ns     |
