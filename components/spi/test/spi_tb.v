@@ -1,5 +1,5 @@
 `timescale 1ns/1ps
-module spi_serdes_tb();
+module spi_tb();
     // Simulation parameters
     localparam GENERATE_DUMP = 1; // set to 0 to turn off
     localparam SPI_CLK_FREQ = 2_000_000;  // Frequency in HZ
@@ -26,7 +26,7 @@ module spi_serdes_tb();
     wire SPI_SDI, SPI_SDO, SPI_CLK, SPI_CSN;
 
     // Instantiate UUT
-    spi_serdes UUT (
+    spi UUT (
             .reset_n    (reset_n),
             .spi_clk    (spi_clk),
             .spi_clk_out(spi_clk_out),
@@ -68,8 +68,8 @@ module spi_serdes_tb();
     initial begin
         // Configure data dump
         if (GENERATE_DUMP == 1) begin
-            $dumpfile("spi_serdes_tb.vcd");
-            $dumpvars(0, spi_serdes_tb);
+            $dumpfile("spi_tb.vcd");
+            $dumpvars(0, spi_tb);
         end
         // Open data files
         primary_data    = $fopen("test/primary_data.txt", "r");

@@ -1,4 +1,4 @@
-module spi_control#(
+module gsensor#(
         // Module clock frequency
         parameter SPI_CLK_FREQ  = 2_000_000,
         // Desired update interval
@@ -112,7 +112,7 @@ assign data_y = {data_storage[3], data_storage[2]};
 ////////////////////////////////////////////////////////////////////////////////
 // SERDES instantiation
 ////////////////////////////////////////////////////////////////////////////////
-spi_serdes serdes (
+spi serdes (
         .reset_n        (reset_n),
         .spi_clk        (spi_clk),
         .spi_clk_out    (spi_clk_out),

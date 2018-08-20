@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-module tb_lab6;
+module uart_tb;
 
    localparam BAUD_RATE = 115200;
    localparam RAM_SIZE = 8;
@@ -25,7 +25,7 @@ module tb_lab6;
    localparam BAUD_DELAY = 10 ** 9 / BAUD_RATE;
 
    // Instantiate Device Under Test
-   lab6 UUT (
+   uart_handler UUT (
       .CLOCK_50(clk),
       .KEY(reset),
       .SW(mode),
@@ -79,7 +79,4 @@ module tb_lab6;
 
       $stop;
    end
-
-
-
-endmodule
+endmodule // uart_tb

@@ -1,5 +1,10 @@
 # G-Sensor Interface
 
+| Required Submodules   |
+|-----------------------|
+| spi.v                 |
+
+
 HDL source and testbenches for periodically sampling the X and Y axes of the
 DE10-Lite G-Sensor. HDL folder contains two main modules:
 

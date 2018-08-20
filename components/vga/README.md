@@ -26,5 +26,5 @@ The test bench `test/vga_timer_tb.v` simulates the timing module for one full
 frame of drawing. This can be helpful for verifying the timing of the module.
 
 Use the Makefile to build, but note that the Makefile expects
-icarus-verilog to be installed. Also note the resulting VCD file as 
+`icarus-verilog` to be installed. Also note the resulting VCD file as 
 approximately 26 MB as this is a large simulation.

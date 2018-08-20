@@ -1,5 +1,5 @@
 `timescale 1ns/1ns
-module spi_control_tb();
+module gsensor_tb();
     // Sim parameters - configured for conveniend simulation
     localparam GENERATE_DUMP = 1;
     localparam CLK_FREQ      = 400; // FPGA Clock (Hz)
@@ -37,7 +37,7 @@ module spi_control_tb();
     ////////////////////////////////
     // Instantuate UUT
     ////////////////////////////////
-    spi_control #(
+    gsensor #(
             .SPI_CLK_FREQ   (SPI_CLK_FREQ),
             .UPDATE_FREQ    (UPDATE_FREQ))
         UUT (
@@ -95,8 +95,8 @@ module spi_control_tb();
         error = 1'b0;
 
         if (GENERATE_DUMP == 1) begin
-            $dumpfile("spi_control_tb.vcd");
-            $dumpvars(0, spi_control_tb);
+            $dumpfile("gsensor_tb.vcd");
+            $dumpvars(0, gsensor_tb);
         end
         secondary_data = $fopen("test/secondary_data.txt", "r");
         // Assert reset

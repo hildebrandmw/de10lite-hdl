@@ -1,4 +1,4 @@
-module spi_serdes(
+module spi(
         // Host side signals
         input                       reset_n,
         input                       spi_clk,
@@ -56,7 +56,7 @@ assign done    = (state == STALL);
 *       shift in 8 bits of read data. Otherwise, write out the last 8 bits.
 *
 * - Branch to a STALL state to assert the "done" signal before returning
-*       to IDLE. Unfortunately necessary for timing at a higher level.
+*       to IDLE. Necessary for timing at a higher level.
 */
 
 always @(posedge spi_clk or negedge reset_n) begin
@@ -101,4 +101,4 @@ always @(posedge spi_clk or negedge reset_n) begin
     end
 end
 
-endmodule
+endmodule // spi
