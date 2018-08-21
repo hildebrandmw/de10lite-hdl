@@ -14,6 +14,8 @@ keep myself on track, my TODO list will be kept here:
 * `gsensor` - Update documentation for the split into `gsensor` and `spi`.
 
 * `spi` - Update documentation for the split into `gsensor` and `spi`.
+    * Make "API" not ridiculous - it's currently set up specifically for the
+        GSensor application and is absurd.
 
 * `uart` - Update testbench to test `uart` directly. This somehow got lost some 
     time in the past and needs to be redone.
