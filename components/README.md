@@ -3,3 +3,4 @@
 Completed Components:
 
 * `dram`
+* `usb-blaster`
