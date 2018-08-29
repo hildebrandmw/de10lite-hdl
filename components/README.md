@@ -1,3 +1,5 @@
 # Components
 
-(TODO) :(
+Completed Components:
+
+* `dram`
