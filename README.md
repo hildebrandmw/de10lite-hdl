@@ -6,11 +6,6 @@ complete. Until then, code and organization will be in a state of flux. To help
 keep myself on track, my TODO list will be kept here:
 
 ### Components
-* `dram` 
-    * Outline how to set up the SDC file correctly.
-    * Show how to instantiate and configure the DRAM controller in System 
-        Integrator
-
 * `gsensor` - Update documentation for the split into `gsensor` and `spi`.
 
 * `spi` - Update documentation for the split into `gsensor` and `spi`.
@@ -89,6 +84,6 @@ available to the internal logic of the FPGA.
 Comprehensive instructions on how to interact with the SDRAM chip the DE10 board
 using Quartus IP Components.
 
-## usb blaster
+## usb_blaster
 Code and instructions for how to transfer data between a host computer and
 the Max10 FPGA using the USB Blaster cable.
