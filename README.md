@@ -15,8 +15,6 @@ keep myself on track, my TODO list will be kept here:
 * `uart` - Update testbench to test `uart` directly. This somehow got lost some 
     time in the past and needs to be redone.
 
-* `usb-blaster` - This is gonna take a lot of work.
-
 ### Projects
 All the things.
 
