@@ -4,3 +4,4 @@ Completed Components:
 
 * `dram`
 * `usb-blaster`
+* `vga`
