@@ -10,6 +10,8 @@ tutorial by Dave Hawkins:
 The 1000 foot view of how this works is summarized by the figure below:
 ![System Architecture](https://github.com/hildebrandmw/JTAGManager.jl/blob/master/img/arch.png?raw=true)
 
+An example project using this technique can be found [here](https://github.com/hildebrandmw/de10lite-hdl/tree/master/projects/sdram_tester)
+
 ## On the FPGA
 For this scheme to work, a Platform Designer [Avalon](https://www.intel.com/content/www/us/en/programmable/documentation/nik1412467993397.html)
 system must be used. In Platform Designer, add a JTAG-to-Avalon-MM component
