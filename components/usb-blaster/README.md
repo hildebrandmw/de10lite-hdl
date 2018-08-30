@@ -4,6 +4,7 @@ Much of this (especially the TCL code) is build upon the excellent
 tutorial by Dave Hawkins:
 
 [Tutorial PDF](https://www.ovro.caltech.edu/~dwh/correlator/pdf/altera_jtag_to_avalon_mm_tutorial.pdf?language=ja)
+
 [Tutorial Source (.zip)](http://www.ovro.caltech.edu/~dwh/correlator/pdf/altera_jtag_to_avalon_mm_tutorial.zip)
 
 The 1000 foot view of how this works is summarized by the figure below:
@@ -29,10 +30,10 @@ To open System Console, open Quartus and follow
 Tools -> System Debugging Tools -> System Console
 ```
 In the TCL console, press `ctrl-e` to open up an explorer to find a TCL script
-to run. The TCL script `jtag_server.tcl` can be found in the Julia package 
-[JTAGManager.jl](https://github.com/hildebrandmw/JTAGManager.jl),
-which also provides a nice Julia wrapper for the read/write functionality of the
-TCL server. 
+to run. The TCL script `jtag_server.tcl` can be found in this repo. 
+
+The Julia package [JTAGManager.jl](https://github.com/hildebrandmw/JTAGManager.jl),
+provides a nice Julia wrapper for the read/write functionality of the TCL server. 
 
 Once the server is running, read and write commands can be sent to the Avalon MM
 system at will. The syntax of the commands is unchanged from the tutorial 
