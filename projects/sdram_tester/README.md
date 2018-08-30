@@ -94,5 +94,5 @@ Key Word Agruments
     action.
 * `start_address = 0` - The first memory mapped address of the DRAM. If the
     SDRAM is mapped to another address, change this.
-    * `end_address = 0x3ff_ffff` - The final memory mapped address of the DRAM.
+* `end_address = 0x3ff_ffff` - The final memory mapped address of the DRAM.
 
