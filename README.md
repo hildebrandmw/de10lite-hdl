@@ -62,6 +62,7 @@ This repository will be split into two main subdirectories,
    data from the FPGA to host PC.
    
 *Components*
+
 While more projects exist in the `components` directory than are listed above (and all of them
 worked at one point or another), I'm working on cleaning up the components to make
 them more generic and easier to use in other contexts.
