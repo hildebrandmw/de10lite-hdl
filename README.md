@@ -1,26 +1,4 @@
-# DE10 Lite HDL (WIP)
-
-## DISCLAIMER NOTE
-Over the next few weeks, I will endeavor to finally make this repository 
-complete. Until then, code and organization will be in a state of flux. To help
-keep myself on track, my TODO list will be kept here:
-
-### Components
-* `gsensor` - Update documentation for the split into `gsensor` and `spi`.
-
-* `spi` - Update documentation for the split into `gsensor` and `spi`.
-    * Make "API" not ridiculous - it's currently set up specifically for the
-        GSensor application and is absurd.
-
-* `uart` - Update testbench to test `uart` directly. This somehow got lost some 
-    time in the past and needs to be redone.
-
-### Projects
-All the things.
-
-
-
-# The actual README
+# DE10 Lite HDL
 
 This repository is a collection of code I've written while TAing EEC180B at 
 UC Davis. This is mainly wrapper code for interacting with the various 
@@ -38,50 +16,56 @@ wholly synthesizeable.
 Where appropriate, Makefiles will be included for building and executing 
 simulations using icarus-verilog.
 
-Please contact me if you have any questions.
+If you try to use any part of this repository and experience problems,
+of if any instructions are unclear, please open an issue or contact me.
 
 # Contents
 
 This repository will be split into two main subdirectories, 
 
-* A `components` directory with Verilog modules, associated testbenches, and o
+* A `components` directory with Verilog modules, associated testbenches, and other
     auxiliary code if necessary.
 
 * A `projects` directory with sample Quartus projects using the various 
     components to demonstrate how they work in the "real world".
+    
+## Projects
 
-A summary of `components` can be found below:
+* [sdram_tester](https://github.com/hildebrandmw/de10lite-hdl/tree/master/projects/sdram_tester): 
+   A simple QSYS project demonstrating how to:
+   * Use the SDRAM chip on the DE10-Lite board using the Intel SDRAM controller IP.
+   * Transfer data between the FPGA and host PC using the USB-Blaster cable.
+   
+## Components
 
-- [UART](#uart)
-- [SPI](#spi)
-- [VGA](#vga)
-- [GSensor](#gsensor)
-- [DRAM](#dram)
-- [USB Blaster](#usb blaster)
+* [SDRAM Controller](https://github.com/hildebrandmw/de10lite-hdl/tree/master/components/dram):
+   Tutorial on how to use the SDRAM chip on the DE10-Lite using the Intel SDRAM controller IP
+   
+* [USB-Blaster](https://github.com/hildebrandmw/de10lite-hdl/tree/master/components/usb-blaster):
+   Tutorial on how to transfer data between the FPGA and host PC using the USB-Blaster
+   cable.
+   
+* [VGA Driver](https://github.com/hildebrandmw/de10lite-hdl/tree/master/components/vga):
+   Simple VGA signal generator. Allows building of more complex display based projects. The base
+   design is targeted for the `640x480` resolution that the DE10-Lite is capable of, but is
+   parameterized to be used at different resolutions.
+   
+## Upcoming
 
-## uart
-This project was from when we were using the old DE2 boards with a RS232 serial 
-port. This code includes 
-    - A simple UART RX/TX core.
-    - A wrapper for receiving and transmitting multiple bytes.
-    - Skeleton testbench code for testing UART.
+*Projects*
 
-## spi
-A simple 4-wire SPI core. Used for communicating with the GSensor chip on the
-board.
+* `GIF Player`: Play GIFs from the DE10-Lite using VGA. GIFs or static images can be transferred
+   from the host PC to the FPGA over the USB-Blaster at runtime. This project is complete,
+   but just needs cleaning up for presentation.
+   
+* `GSensor Monitor`: Use the GSensor to move a box around a screen. Also transmit GSensor
+   data from the FPGA to host PC.
+   
+*Components*
+While more projects exist in the `components` directory than are listed above (and all of them
+worked at one point or another), I'm working on cleaning up the components to make
+them more generic and easier to use in other contexts.
 
-## vga
-A parameterized core using the VGA port.
-
-## gsensor
-Control code for `spi`, which correctly initializes the GSensor chip and 
-periodically samples `X`, `Y`, and `Z` data from the chip and makes that easily
-available to the internal logic of the FPGA.
-
-## dram
-Comprehensive instructions on how to interact with the SDRAM chip the DE10 board
-using Quartus IP Components.
-
-## usb_blaster
-Code and instructions for how to transfer data between a host computer and
-the Max10 FPGA using the USB Blaster cable.
+* `UART`: Simple, parametric UART driver.
+* `SPI`: Simple 4-wire SPI driver.
+* `GSensor`: Module for initializing and reading data from the GSensor on the DE10-Lite board.
