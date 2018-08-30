@@ -1,0 +1,3 @@
+[deps]
+JTAGManager = "da40bc36-f350-56c6-b667-7f156234cf22"
+Tester = "e8ecf581-060f-50dd-91c5-06ff24be5335"
