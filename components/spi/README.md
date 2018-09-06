@@ -4,4 +4,4 @@ A simple 4-wire serialiser/deserializer.
 
 Documentation coming tomorrow.
 
-[cookies](./figures/request_interface.png)
+![cookies](https://github.com/hildebrandmw/de10lite-hdl/blob/master/components/spi/figs/request_interface.png?raw=true)
