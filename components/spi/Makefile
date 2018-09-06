@@ -1,5 +1,5 @@
-SRC=	hdl/spi.v 					\
-	   	test/spi_tb.v 				\
+SRC=	hdl/spi.sv 					\
+	   	test/spi_tb.sv 				\
 	   	test/spi_secondary_mimic.v 	\
 		test/file_reader.v
 

@@ -19,7 +19,7 @@ module spi #(
         output logic                active,
         // SPI Side signals
         output logic spi_sdi,
-        input spi_sdo,
+        input        spi_sdo,
         output logic spi_csn,
         output logic spi_clk
     );
