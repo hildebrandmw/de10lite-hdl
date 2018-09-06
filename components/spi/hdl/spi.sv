@@ -44,9 +44,9 @@ module spi #(
             if (clk_counter == 0) begin
                 // Toggle SPI clock
                 spi_clk <= ~spi_clk;
-                clk_counter <= CLK_COUNT - 1;
+                clk_counter <= CLK_COUNT - 1'b1;
             end else begin
-                clk_counter <= clk_counter - 1;
+                clk_counter <= clk_counter - 1'b1;
             end
         end else begin
             spi_clk <= 1'b1;
@@ -143,7 +143,7 @@ module spi #(
                 end
 
                 if (idlecount > 0) begin
-                    idlecount_next = idlecount - 1;
+                    idlecount_next = idlecount - 1'b1;
                 end
             end
 
@@ -153,7 +153,7 @@ module spi #(
                 spi_clk_enable = 1'b1;
                 // Acknowledge that the request has begun.
                 ack_request = 1'b1;
-                count_next = DATASIZE - 1;
+                count_next = DATASIZE - 1'b1;
                 state_next = ACTIVE; 
             end
 
@@ -190,7 +190,7 @@ module spi #(
                             state_next = TO_IDLE;
                         end
                     end else begin
-                        count_next = count - 1;
+                        count_next = count - 1'b1;
                     end
 
                 end 
@@ -201,7 +201,7 @@ module spi #(
             TO_IDLE: begin
                 spi_csn_next = 1'b0;
                 spi_sdi_next = 1'b1;
-                idlecount_next = IDLE_CLOCKS-1;
+                idlecount_next = IDLE_CLOCKS - 1'b1;
                 state_next = IDLE;
             end
         endcase

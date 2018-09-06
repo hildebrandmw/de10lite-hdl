@@ -25,10 +25,10 @@ module gsensor #(
 
     always_ff @(posedge clk) begin
         if (update_clock_counter == 0) begin
-            update_clock_counter <= UPDATE_CLOCK_COUNT - 1;
+            update_clock_counter <= UPDATE_CLOCK_COUNT - 1'b1;
             update <= 1'b1;
         end else begin
-            update_clock_counter <= update_clock_counter - 1;
+            update_clock_counter <= update_clock_counter - 1'b1;
             update <= 1'b0;
         end
     end
@@ -75,7 +75,7 @@ module gsensor #(
     localparam   TIME_FF         = 6'h29;
 
     // This method of initialization might not work ...
-    localparam NUM_INSTRUCTIONS = 12;
+    localparam NUM_INSTRUCTIONS = 44;
     logic [$clog2(NUM_INSTRUCTIONS)-1:0] pc, pc_next;
 
     instruction_t current_instruction;
@@ -83,28 +83,80 @@ module gsensor #(
 
     instruction_t spi_program [0:NUM_INSTRUCTIONS-1];
     initial begin
-        spi_program = {
-            // Initialization routine
-            {WRITE, {WRITE_BIT, SINGLE_ACTION, THRESH_ACT}}, // Set activation threshold
+        spi_program = '{
+            // -- Initialization routine
+            // Set activation threshold
+            {WRITE, {WRITE_BIT, SINGLE_ACTION, THRESH_ACT}},
             {WRITE, 8'h20},
             {WAIT_FOR_IDLE, 8'h00},
-            {WRITE, {READ_BIT, MULTI_ACTION, 6'h00}},
+            // Set inactivation threshold
+            {WRITE, {WRITE_BIT, SINGLE_ACTION, THRESH_INACT}},
+            {WRITE, 8'h03},
+            {WAIT_FOR_IDLE, 8'h00},
+            // Set inactive timeout
+            {WRITE, {WRITE_BIT, SINGLE_ACTION, TIME_INACT}},
+            {WRITE, 8'h01},
+            {WAIT_FOR_IDLE, 8'h00},
+            // set Acitavation detection to DC Coupled, inactivate ac coupled
+            // configure all axes to be active
+            {WRITE, {WRITE_BIT, SINGLE_ACTION, ACT_INACT_CTL}},
+            {WRITE, 8'h7f},
+            {WAIT_FOR_IDLE, 8'h00},
+            // Initialise freefall detection to recommended value
+            {WRITE, {WRITE_BIT, SINGLE_ACTION, THRESH_FF}},
+            {WRITE, 8'h09},
+            {WAIT_FOR_IDLE, 8'h00},
+            // Initialize freefall time to recommended value
+            {WRITE, {WRITE_BIT, SINGLE_ACTION, TIME_FF}},
+            {WRITE, 8'h46},
+            {WAIT_FOR_IDLE, 8'h00},
+            // Output Rate: 50 Hz
+            {WRITE, {WRITE_BIT, SINGLE_ACTION, BW_RATE}},
+            {WRITE, 8'h09},
+            {WAIT_FOR_IDLE, 8'h00},
+            // Enable interrupts on activity only
+            {WRITE, {WRITE_BIT, SINGLE_ACTION, INT_ENABLE}},
+            {WRITE, 8'h10},
+            {WAIT_FOR_IDLE, 8'h00},
+            // Send the interrupt to pin INT2
+            {WRITE, {WRITE_BIT, SINGLE_ACTION, INT_MAP}},
+            {WRITE, 8'h10},
+            {WAIT_FOR_IDLE, 8'h00},
+            // Configure for 4-wire SPI mode
+            {WRITE, {WRITE_BIT, SINGLE_ACTION, DATA_FORMAT}},
+            {WRITE, 8'h00},
+            {WAIT_FOR_IDLE, 8'h00},
+            // Configure chip to AUTO_SLEEP during inactivity
+            {WRITE, {WRITE_BIT, SINGLE_ACTION, POWER_CONTROL}},
+            {WRITE, 8'h08},
+            {WAIT_FOR_IDLE, 8'h00},
+
+            // -- Main read loop --
+            // Wait for update signal
+            {WAIT_FOR_UPDATE, 8'h00}, 
+            // read data
+            {WRITE, {READ_BIT, MULTI_ACTION, 6'h32}},
             {READ, 8'h00},
             {READ, 8'h01},
             {READ, 8'h02},
             {READ, 8'h03},
             {READ, 8'h04},
             {READ, 8'h05},
+            // Wait for last read data to become available.
+            {WAIT_FOR_IDLE, 8'h00},
             {NOTIFY, 8'h00},
-            {JUMP, 8'h00}
+            // Jump to address 33 (start of main loop)
+            {JUMP, 8'd33}
         };
     end
 
     // ---------------------- //
     // Instantiate SPI Serdes //
     // ---------------------- //
-    logic [7:0] tx_data, tx_data_next, rx_data;    
+    logic [7:0] tx_data, rx_data;    
     logic tx_request, rx_request, rx_valid, ack_request, active;
+
+    assign tx_data = current_instruction.immediate;
 
     spi #(
         .CLK_FREQUENCY(CLK_FREQUENCY),
@@ -162,7 +214,6 @@ module gsensor #(
     always_ff @(posedge clk) begin  
         pc <= pc_next;
         current_instruction <= spi_program[pc_next];
-        tx_data <= tx_data_next;
     end
 
     always_comb begin
@@ -172,8 +223,6 @@ module gsensor #(
         end else begin
             pc_next = pc;
         end
-
-        tx_data_next = tx_data;
 
         // Default outputs
         tx_request = 1'b0; 
@@ -189,28 +238,27 @@ module gsensor #(
                 rx_request = 1'b1;
                 if (ack_request) begin
                     monitor_rx = 1'b1;
-                    pc_next = pc + 1;
+                    pc_next = pc + 1'b1;
                 end
             end
 
             WRITE: begin
-                tx_data_next = current_instruction.immediate;
                 tx_request = 1'b1;
                 // Increment PC if TX is acknowledged.
                 if (ack_request) begin
-                    pc_next = pc + 1;
+                    pc_next = pc + 1'b1;
                 end
             end
 
             WAIT_FOR_IDLE: begin
                 if (active == 1'b0) begin
-                    pc_next = pc + 1;
+                    pc_next = pc + 1'b1;
                 end
             end
 
             WAIT_FOR_UPDATE: begin
                 if (update) begin
-                    pc_next = pc + 1;
+                    pc_next = pc + 1'b1;
                 end
             end
 
