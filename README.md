@@ -41,6 +41,9 @@ This repository will be split into two main subdirectories,
 * [SPI Driver](https://github.com/hildebrandmw/de10lite-hdl/tree/master/components/spi):
     4-wire SPI driver. This module is primarily for communication with the GSensor chip on the DE10-Lite
     board, but is hackable enough for use in other situations if needed.
+    
+* [GSensor](https://github.com/hildebrandmw/de10lite-hdl/tree/master/components/gsensor):
+    Module for initializing and reading data from the GSensor (Accelerometer) on the DE10-Lite board.
 
 * [SDRAM Controller](https://github.com/hildebrandmw/de10lite-hdl/tree/master/components/dram):
    Tutorial on how to use the SDRAM chip on the DE10-Lite using the Intel SDRAM controller IP
@@ -54,6 +57,9 @@ This repository will be split into two main subdirectories,
    design is targeted for the `640x480` resolution that the DE10-Lite is capable of, but is
    parameterized to be used at different resolutions.
    
+* [UART](https://github.com/hildebrandmw/de10lite-hdl/tree/master/components/uart):
+    Simple, parametric UART driver.
+   
 ## Upcoming
 
 *Projects*
@@ -64,12 +70,3 @@ This repository will be split into two main subdirectories,
    
 * `GSensor Monitor`: Use the GSensor to move a box around a screen. Also transmit GSensor
    data from the FPGA to host PC.
-   
-*Components*
-
-While more projects exist in the `components` directory than are listed above (and all of them
-worked at one point or another), I'm working on cleaning up the components to make
-them more generic and easier to use in other contexts.
-
-* `UART`: Simple, parametric UART driver.
-* `GSensor`: Module for initializing and reading data from the GSensor on the DE10-Lite board.
