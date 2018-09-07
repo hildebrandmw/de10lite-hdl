@@ -4,19 +4,16 @@ A simple 4-wire serialiser/deserializer for communicating with the GSensor chip.
 This design should be general enough to allow adaption to other SPI applications
 if desired.
 
-## Parameter and Ports
-
-**Parameters**
+## Parameters
 
 | Parameter         | Note                                                      |
 --------------------|-----------------------------------------------------------|
 | `DATASIZE`        | Number of bytes transmitted/recieved at a time.           |
 | `CLK_FREQUENCY`   | Clock frequency (`Hz`) of the `clk` in the FPGA logic.    |
-| `SPI_FREQUENCY`   | Desired clock frequency of `spi_clk`. `CLK_FREQUENCY` 
-                        must be an even multiple of `SPI_FREQUENCY`.            |
-| `IDLE_NS`         | Minimum deassertion time for `spi_csn` in `NS`.           |
+| `SPI_FREQUENCY`   | Desired clock frequency of `spi_clk`. `CLK_FREQUENCY` must be an even multiple of `SPI_FREQUENCY`.|
+|`IDLE_NS`         | Minimum deassertion time for `spi_csn` in `NS`.           |
 
-**Ports**
+## Ports
 
 | Signal        | Note |
 |---------------|--|
@@ -34,8 +31,8 @@ if desired.
 | `spi_csn`     | Chip select. |
 | `spi_clk`     | SPI clock. |
 
-### Timing diagrams for transfer requests
-![cookies](./figures/request_interface.png)
+## Timing diagrams for transfer requests
+![cookies](https://github.com/hildebrandmw/de10lite-hdl/blob/master/components/spi/figs/request_interface.png?raw=true)
 
 The SPI module is capable of servicing simultaneous RX and TX operations or
 just single RX/TX operations. Flag `ack_request` is asserted when an operation
@@ -47,18 +44,17 @@ is asserted.
 Read data is available once `rx_valid` is asserted, as shown in the timing
 diagram below
 
-![hello](./figures/response_interface.png)
+![hello](https://github.com/hildebrandmw/de10lite-hdl/blob/master/components/spi/figs/recieve_interface.png?raw=true)
 
 Once a read request has been acknowledged, the `rx_valid` signal must be
 monitored until it is asserted.
 
-### SPI signal timing
+## SPI signal timing
 
-![waveforms](./figures/spi.png)
+![waveforms](https://github.com/hildebrandmw/de10lite-hdl/blob/master/components/spi/figs/spi.png?raw=true)
 
-**Timing**
 
-|Signal     | Time                  |
+| Variable  | Time                  |
 |-----------|-----------------------|
 |`T_lead`   | `1/CLK_FREQUENCY`     |
 |`T_spi`    | `1/SPI_FREQUENCY`     |

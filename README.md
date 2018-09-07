@@ -38,6 +38,10 @@ This repository will be split into two main subdirectories,
    
 ## Components
 
+* [SPI Driver](https://github.com/hildebrandmw/de10lite-hdl/tree/master/components/spi):
+    4-wire SPI driver. This module is primarily for communication with the GSensor chip on the DE10-Lite
+    board, but is hackable enough for use in other situations if needed.
+
 * [SDRAM Controller](https://github.com/hildebrandmw/de10lite-hdl/tree/master/components/dram):
    Tutorial on how to use the SDRAM chip on the DE10-Lite using the Intel SDRAM controller IP
    
@@ -68,5 +72,4 @@ worked at one point or another), I'm working on cleaning up the components to ma
 them more generic and easier to use in other contexts.
 
 * `UART`: Simple, parametric UART driver.
-* `SPI`: Simple 4-wire SPI driver.
 * `GSensor`: Module for initializing and reading data from the GSensor on the DE10-Lite board.
