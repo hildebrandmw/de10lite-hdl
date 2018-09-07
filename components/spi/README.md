@@ -4,9 +4,7 @@ A simple 4-wire serialiser/deserializer for communicating with the GSensor chip.
 This design should be general enough to allow adaption to other SPI applications
 if desired.
 
-## Parameter and Ports
-
-**Parameters**
+## Parameters
 
 | Parameter         | Note                                                      |
 --------------------|-----------------------------------------------------------|
@@ -15,7 +13,7 @@ if desired.
 | `SPI_FREQUENCY`   | Desired clock frequency of `spi_clk`. `CLK_FREQUENCY` must be an even multiple of `SPI_FREQUENCY`.|
 |`IDLE_NS`         | Minimum deassertion time for `spi_csn` in `NS`.           |
 
-**Ports**
+## Ports
 
 | Signal        | Note |
 |---------------|--|
@@ -33,7 +31,7 @@ if desired.
 | `spi_csn`     | Chip select. |
 | `spi_clk`     | SPI clock. |
 
-### Timing diagrams for transfer requests
+## Timing diagrams for transfer requests
 ![cookies](https://github.com/hildebrandmw/de10lite-hdl/blob/master/components/spi/figs/request_interface.png?raw=true)
 
 The SPI module is capable of servicing simultaneous RX and TX operations or
@@ -51,13 +49,12 @@ diagram below
 Once a read request has been acknowledged, the `rx_valid` signal must be
 monitored until it is asserted.
 
-### SPI signal timing
+## SPI signal timing
 
 ![waveforms](https://github.com/hildebrandmw/de10lite-hdl/blob/master/components/spi/figs/spi.png?raw=true)
 
-**Timing**
 
-|Signal     | Time                  |
+| Variable  | Time                  |
 |-----------|-----------------------|
 |`T_lead`   | `1/CLK_FREQUENCY`     |
 |`T_spi`    | `1/SPI_FREQUENCY`     |
