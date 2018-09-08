@@ -1,10 +1,11 @@
 module ImageSerializer
 
-export send, setspeed, setcount
+export send, setspeed, setcount, load
+
+using Sockets
 
 # For opening and working with images
 using Images
-export load
 
 # Communicating with the device.
 using JTAGManager
@@ -12,7 +13,6 @@ export JTAG
 
 # For progress information
 using ProgressMeter
-
 
 # Address of the max_frame_count register.
 # System counts to this value before moving to the next frame.
@@ -24,12 +24,12 @@ imagecount_reg_address() = 0x0400_0010
 
 dram_base_address() = zero(UInt)
 
-function send(jtag::JTAG, image::String)
-    # Configure frame count register.
-    write(jtag, imagecount_reg_address(), size(img, 3) - 1)
-
+function Sockets.send(jtag::JTAG, image::String)
     @info "Loading Image"
     img = load(image)
+
+    # Configure frame count register.
+    write(jtag, imagecount_reg_address(), size(img, 3) - 1)
 
     @info "Packing Image" 
     # By default, use 4 bits per color and 16 bits per pixel.
@@ -47,8 +47,8 @@ setcount(jtag::JTAG, count) = write(jtag, imagecount_reg_address(), count)
 # for the display unit. 
 # 
 # Display unit expects images to be row major.
-flatten(img::Array{T,2}) where T = reshape(img', :)
-flatten(img::Array{T,3}) where T = permutedims(img, (2,1,3))
+flatten(img::AbstractArray{T,2}) where T = reshape(img', :)
+flatten(img::AbstractArray{T,3}) where T = permutedims(img, (2,1,3))
 
 function pack(img::Array, bits_per_color, bits_per_pixel)
     # Make sure numbers match.
