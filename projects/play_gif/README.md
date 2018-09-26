@@ -22,8 +22,6 @@ JTAG{IPv4}(ip"127.0.0.1", 2540, false)
 
 # Send the "waterfall" gif
 julia> send(jtag, "waterfall.gif")
-
-julia> send(jtag, "waterfall.gif")
 [ Info: Loading Image
 [ Info: Packing Image
 Progress: 100%|█████████████████████████████████████████| Time: 0:00:02
@@ -43,6 +41,8 @@ Progress: 100%|█████████████████████�
 ```
 
 ## Architecture
+
+![image](https://github.com/hildebrandmw/de10lite-hdl/blob/master/projects/play_gif/fig/system.png?raw=true)
 
 An Avalon Interface (see `qsys/system.qsys`) connects several IP components together, 
 allowing images to be send directly from a host machine to the SDRAM through the JTAG to 
