@@ -1,3 +1,4 @@
 [deps]
+ImageMagick = "6218d12a-5da1-5696-b52f-db25d2ecc6d1"
 ImageSerializer = "01bb58f4-dc0a-503f-a831-ff0d12640e4e"
 JTAGManager = "da40bc36-f350-56c6-b667-7f156234cf22"
