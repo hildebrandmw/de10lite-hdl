@@ -36,8 +36,9 @@ This repository will be split into two main subdirectories,
    * Use the SDRAM chip on the DE10-Lite board using the Intel SDRAM controller IP.
    * Transfer data between the FPGA and host PC using the USB-Blaster cable.
    
-* `GIF Player`: Play GIFs from the DE10-Lite using VGA. GIFs or static images can be transferred
-   from the host PC to the FPGA over the USB-Blaster at runtime.
+* [GIF Player](https://github.com/hildebrandmw/de10lite-hdl/tree/master/projects/play_gif):
+    Play GIFs from the DE10-Lite using VGA. GIFs or static images can be transferredfrom the host PC
+    to the FPGA over the USB-Blaster at runtime.
    
 ## Components
 
