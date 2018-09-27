@@ -13,9 +13,6 @@ Since this is wrapper code, it may or may not be functional standalone as-is.
 When I have time, I will endeavor to make examples more complete and 
 wholly synthesizeable. 
 
-Where appropriate, Makefiles will be included for building and executing 
-simulations using icarus-verilog.
-
 If you try to use any part of this repository and experience problems,
 of if any instructions are unclear, please open an issue or contact me.
 
