@@ -1,0 +1,10 @@
+name = "Tester"
+uuid = "14c4c436-bb2f-4879-8264-51fcb32f1592"
+authors = ["Mark Hildebrand <mhildebrand@ucdavis.edu>"]
+version = "0.1.0"
+
+[deps]
+JTAGManager = "2b115a5d-aef4-407f-8946-5025376e7d97"
+Logging = "56ddb016-857b-54e1-b83d-db4d58db5568"
+ProgressMeter = "92933f4c-e287-5a05-a399-4b506db050ca"
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"

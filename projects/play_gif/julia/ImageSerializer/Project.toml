@@ -1,0 +1,10 @@
+name = "ImageSerializer"
+uuid = "0db688d2-3188-4b67-90f9-e7d54f0bd632"
+authors = ["Mark Hildebrand <mhildebrand@ucdavis.edu>"]
+version = "0.1.0"
+
+[deps]
+Images = "916415d5-f1e6-5110-898d-aaa5f9f070e0"
+JTAGManager = "2b115a5d-aef4-407f-8946-5025376e7d97"
+ProgressMeter = "92933f4c-e287-5a05-a399-4b506db050ca"
+Sockets = "6462fe0b-24de-5631-8697-dd941f90decc"

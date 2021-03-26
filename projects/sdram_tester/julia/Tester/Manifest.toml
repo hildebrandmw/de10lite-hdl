@@ -1,0 +1,39 @@
+# This file is machine-generated - editing it directly is not advised
+
+[[Distributed]]
+deps = ["Random", "Serialization", "Sockets"]
+uuid = "8ba89e20-285c-5b6f-9357-94700520ee1b"
+
+[[JTAGManager]]
+deps = ["ProgressMeter", "Sockets"]
+git-tree-sha1 = "ab59bf1ef141ba608255da0a5325c1773a2c842b"
+repo-rev = "master"
+repo-url = "https://github.com/hildebrandmw/JTAGManager.jl"
+uuid = "2b115a5d-aef4-407f-8946-5025376e7d97"
+version = "0.1.0"
+
+[[Logging]]
+uuid = "56ddb016-857b-54e1-b83d-db4d58db5568"
+
+[[Printf]]
+deps = ["Unicode"]
+uuid = "de0858da-6303-5e67-8744-51eddeeeb8d7"
+
+[[ProgressMeter]]
+deps = ["Distributed", "Printf"]
+git-tree-sha1 = "6e9c89cba09f6ef134b00e10625590746ba1e036"
+uuid = "92933f4c-e287-5a05-a399-4b506db050ca"
+version = "1.5.0"
+
+[[Random]]
+deps = ["Serialization"]
+uuid = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
+
+[[Serialization]]
+uuid = "9e88b42a-f829-5b0c-bbe9-9e923198166b"
+
+[[Sockets]]
+uuid = "6462fe0b-24de-5631-8697-dd941f90decc"
+
+[[Unicode]]
+uuid = "4ec0a83e-493e-50e2-b9ac-8f72acf5a8f5"
